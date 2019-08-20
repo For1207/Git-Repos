@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+img, embed, object, video {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f3f2ed;
+  margin: 2%;
+}
+
+h1 {
+  text-align: right;
+  margin-right: 3%;
+}
+
+.game-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 0 3%;
+  margin-top: 5%;
+}
+
+#game_board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 768px;
+  /* max-height: 968px; */
+  background-color: #fefff9;
+  grid-gap: 1.5%;
+  border-radius: 1%;
+  margin: 0 auto;
+  padding: 3% 3% 8% 3%;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  border-radius: 4%;
+  /* background-color: #23252a; */
+  /* background-color: #23252a; */
+  box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
