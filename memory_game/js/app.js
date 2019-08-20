@@ -1,4 +1,4 @@
-// shuffles cards array/ cards deck
+// shuffles  cards deck
 
 Array.prototype.shuffle = function() {
   var i = this.length, j, temp;
@@ -11,22 +11,23 @@ Array.prototype.shuffle = function() {
   return this;
 }
 
-var cardDeck = ['images/icons/book.png', 'images/icons/bus.png', 'images/icons/cake.png', 'images/icons/coffee.png', 'images/icons/gift.png', 'images/icons/money.png', 'images/icons/money.png', 'images/icons/money.png'];
+var cardDeck = ['images/icons/book.png', 'images/icons/bus.png', 'images/icons/cake.png', 'images/icons/coffee.png', 'images/icons/gift.png', 'images/icons/money.png', 'images/icons/plane.png', 'images/icons/shop.png'];
 var result = cardDeck.shuffle();
 
-// document.write(cardDeck);
 
-// // this code works and inserts a picture in the grid. Don't touch it!
-// const icon = document.createElement('img');
-// icon.src = "images/icons/plane.png";
-// function addIcon() {
-//   document.querySelector('.card').appendChild(icon);
-// }
-// addIcon(icon);
+// adds images to the grid
 
-const icon = document.createElement('img');
-icon.src = cardDeck[0];
-function addIcon() {
-  document.querySelector('.card').appendChild(icon);
+let icon = document.createElement('img');
+
+let z=0;
+for (z=0; z<2; z++) {
+  let i = 0;
+  for (i = 0; i < 8; i++) {
+  function addIcon() {
+    icon = document.createElement('img');
+    icon.src = cardDeck[i];
+    document.querySelector('#game_board').appendChild(icon);
+  }
+  addIcon(icon);
+  }
 }
-addIcon(icon);
