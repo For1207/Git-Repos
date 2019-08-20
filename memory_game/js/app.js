@@ -1,4 +1,4 @@
-// shuffles  cards deck
+// shuffle  cards deck
 
 Array.prototype.shuffle = function() {
   var i = this.length, j, temp;
@@ -15,17 +15,18 @@ var cardDeck = ['images/icons/book.png', 'images/icons/bus.png', 'images/icons/c
 var result = cardDeck.shuffle();
 
 
-// adds images to the grid
+// add 16 shuffled images to the grid and assign .card class to them
 
 let icon = document.createElement('img');
 
-let z=0;
-for (z=0; z<2; z++) {
+let e=0;
+for (e=0; e<2; e++) {
   let i = 0;
   for (i = 0; i < 8; i++) {
   function addIcon() {
     icon = document.createElement('img');
     icon.src = cardDeck[i];
+    icon.classList.add('card');
     document.querySelector('#game_board').appendChild(icon);
   }
   addIcon(icon);
