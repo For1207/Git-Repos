@@ -1,6 +1,20 @@
-/*
- * Create a list that holds all of your cards
- */
+// set array of cards
+
+ let card = document.getElementsByClassName('card');
+ const cards = [...card];
+
+//add listeners to cards and flip them;
+
+const deck = document.querySelector('.deck');
+deck.addEventListener('click', event => {
+  const clickTarget = event.target;
+  if (clickTarget.classList.contains('card')) {
+    clickTarget.classList.toggle('open');
+    clickTarget.classList.toggle('show');
+  }
+});
+
+
 
 
 /*
@@ -9,6 +23,12 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+
+
+
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 Array.prototype.shuffle = function() {
@@ -22,14 +42,7 @@ Array.prototype.shuffle = function() {
   return this;
 }
 
-const deck = document.querySelector('.deck');
-deck.addEventListener('click', event => {
-  const clickTarget = event.target;
-  if (clickTarget.classList.contains('card')) {
-    clickTarget.classList.toggle('open');
-    clickTarget.classList.toggle('show');
-  }
-});
+
 
 
 
