@@ -1,7 +1,18 @@
-// shuffle  cards deck
+/*
+ * Create a list that holds all of your cards
+ */
 
+
+/*
+ * Display the cards on the page
+ *   - shuffle the list of cards using the provided "shuffle" method below
+ *   - loop through each card and create its HTML
+ *   - add each card's HTML to the page
+ */
+
+// Shuffle function from http://stackoverflow.com/a/2450976
 Array.prototype.shuffle = function() {
-  let i = this.length, j, temp;
+  var i = this.length, j, temp;
   while(--i > 0) {
     j = Math.floor(Math.random() * (i + 1));
     temp = this[j];
@@ -11,99 +22,24 @@ Array.prototype.shuffle = function() {
   return this;
 }
 
-//  create arrays for inital deck, opened cards and matched cards
-
-const iconDeck = ['images/icons/book.png', 'images/icons/bus.png', 'images/icons/cake.png', 'images/icons/coffee.png', 'images/icons/gift.png', 'images/icons/money.png', 'images/icons/plane.png', 'images/icons/shop.png', 'images/icons/book.png', 'images/icons/bus.png', 'images/icons/cake.png', 'images/icons/coffee.png', 'images/icons/gift.png', 'images/icons/money.png', 'images/icons/plane.png', 'images/icons/shop.png'];
-const result = iconDeck.shuffle();
-let iconsOpened = [];
-let iconsMatched = [];
-
-// add 16 shuffled images to the grid, assign .card class to them, assign ID's to the cells
-
-let icon = document.createElement('img');
-
-  for (let i = 0; i < 16; i++) {
-  function addIcon() {
-    const icon = document.createElement('img');
-    icon.src = iconDeck[i];
-    icon.classList.add('icon', 'back_side');
-    document.getElementById('cell_' + i).appendChild(icon);
-  }
-  addIcon(icon);
-  }
-
-// add click listeners, class name and flip cards
-
-const gameBoard = document.querySelector('.game_board');
-
-gameBoard.addEventListener('click', click => {
-  const clickIcon = click.target;
-  if (clickIcon.classList.contains('icon') && iconsOpened.length < 2 && !clickIcon.classList.contains('front_side')) {
-    clickIcon.classList.toggle('front_side');
-    iconsOpened.push(clickIcon);
-    if (iconsOpened[0].outerHTML === iconsOpened[1].outerHTML) {
-      iconsMatched.unshift(iconsOpened[0], iconsOpened[1]);
-      iconsMatched[0].classList.add('matched');
-      iconsMatched[1].classList.add('matched');
-      iconsOpened=[];
-    } else {
-        setTimeout(() => {
-          iconsOpened[0].classList.toggle('front_side');
-          iconsOpened[1].classList.toggle('front_side');
-          iconsOpened=[];
-        }, 1000);
-      }
+const deck = document.querySelector('.deck');
+deck.addEventListener('click', event => {
+  const clickTarget = event.target;
+  if (clickTarget.classList.contains('card')) {
+    clickTarget.classList.toggle('open');
+    clickTarget.classList.toggle('show');
   }
 });
 
-//display elapsed time and stop when cards are matched
 
-let s = -1;
-let m = 0;
-let h = 0;
-let timeSeconds;
-let timeTotal = 0; //total time of the game in seconds
-let gameTime = 0;
 
-function startTimer() {
-  gameTime = setInterval(timer, 1000);
-}
-
-function timer() {
-
-  timeTotal++
-  if (s === 59) {
-    s = 0;
-  }
-    s++;
-
-if (s < 10 && m < 10  ) {
-   timeSeconds = document.querySelector('#game-menu_time').innerHTML = 'Time: ' + h + 'h ' + '0' + m + 'm ' + '0' + s + 's';
-} else if (s >= 10 && m < 10) {
-    timeSeconds = document.querySelector('#game-menu_time').innerHTML = 'Time: ' + h +'h ' + '0' + m + 'm ' + s + 's';
-  } else {
-    timeSeconds = document.querySelector('#game-menu_time').innerHTML = 'Time: ' + h +'h ' + m + 'm ' + s + 's';
-  }
-
-if ( s === 59 ) {
-  m++;
-}
-if ( m === 59) {
-  m = 0;
-  h++;
-}
-}
-
-game_board.addEventListener('click', function() {
-  if (!gameTime) {
-    startTimer();
-  }
-})
-
-setTimeout(function() {if (iconsMatched.length === 16) {
-  clearInterval(gameTime);
-}}, 20000);
-
-// // if (iconsMatched.length === 16) {
-// //   clearInterval(gameTime);
-// }
+/*
+ * set up the event listener for a card. If a card is clicked:
+ *  - display the card's symbol (put this functionality in another function that you call from this one)
+ *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - if the list already has another card, check to see if the two cards match
+ *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ */
