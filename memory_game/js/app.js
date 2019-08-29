@@ -2,35 +2,23 @@
 
  let card = document.getElementsByClassName('card');
  const cards = [...card];
+ const cardsOpened = [];
+ const Matched = [];
 
 //add listeners to cards and flip them;
 
 const deck = document.querySelector('.deck');
 deck.addEventListener('click', event => {
   const clickTarget = event.target;
-  if (clickTarget.classList.contains('card')) {
+  if (clickTarget.classList.contains('card') &&
+      !clickTarget.classList.contains('match')) {
     clickTarget.classList.toggle('open');
     clickTarget.classList.toggle('show');
+    cardsOpened.push(clickTarget);
   }
 });
 
-
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-
-
-
-
-
-
-// Shuffle function from http://stackoverflow.com/a/2450976
+// shuffle the array of cards
 Array.prototype.shuffle = function() {
   var i = this.length, j, temp;
   while(--i > 0) {
@@ -41,6 +29,45 @@ Array.prototype.shuffle = function() {
   }
   return this;
 }
+const shuffledCards = cards.shuffle();
+
+
+// display the cards on the page
+
+ for (card of shuffledCards) {
+   deck.appendChild(card);
+ }
+
+ // match cards
+
+   if (cardsOpened[0] === cardsOpened[2] &&
+      cardsOpened.length < 2) {
+      clickTarget.classList.add('match');
+      clickTarget.classList.add('match');
+
+     // clickTarget.classList.toggle('open');
+     // clickTarget.classList.toggle('show');
+   }
+ //
+ // gameBoard.addEventListener('click', click => {
+ //   const clickIcon = click.target;
+ //   if (clickIcon.classList.contains('icon') && iconsOpened.length < 2 && !clickIcon.classList.contains('front_side')) {
+ //     clickIcon.classList.toggle('front_side');
+ //     iconsOpened.push(clickIcon);
+ //     if (iconsOpened[0].outerHTML === iconsOpened[1].outerHTML) {
+ //       iconsMatched.unshift(iconsOpened[0], iconsOpened[1]);
+ //       iconsMatched[0].classList.add('matched');
+ //       iconsMatched[1].classList.add('matched');
+ //       iconsOpened=[];
+ //     } else {
+ //         setTimeout(() => {
+ //           iconsOpened[0].classList.toggle('front_side');
+ //           iconsOpened[1].classList.toggle('front_side');
+ //           iconsOpened=[];
+ //         }, 1000);
+ //       }
+ //   }
+ // });
 
 
 
