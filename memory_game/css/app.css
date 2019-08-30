@@ -36,6 +36,9 @@ h1 {
 /*
  * Styles for the deck of cards
  */
+.clock {
+  padding-right: 7px;
+}
 
 .deck {
     width: 660px;
@@ -78,7 +81,7 @@ h1 {
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 44px;
+    font-size: 33px;
 }
 
 /*
