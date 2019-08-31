@@ -87,6 +87,9 @@ deck.addEventListener('click', function event() {
       startClock();
       clockOff = false;
     }
+    if (cardsMatched.length === 16) {
+      stopClock();
+    }
 })
 
 function displayTime() {
@@ -103,13 +106,6 @@ function displayTime() {
 function stopClock() {
   clearInterval(clockId);
 }
-
-let finishGame = cardsMatched.length === 2;
-if (finishGame) {
-  stopClock();
-  console.log (1);
-}
-
 
 /*
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
