@@ -99,9 +99,12 @@ deck.addEventListener('click', function event() {
     }
 })
 
+let minutes = 0;
+let seconds = 0;
+
 function displayTime() {
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+  minutes = Math.floor(time / 60);
+  seconds = time % 60;
   const clock = document.querySelector('.clock');
   if (seconds < 10) {
   clock.innerHTML = minutes + ' : ' + '0' + seconds;
@@ -138,8 +141,8 @@ function displayThreeStars() {
 function starScore() {
   starId = setInterval(function() {
     movesToMatchedRatio = cardsMatched.length / (movesCounter + 1);
-    console.log(movesToMatchedRatio);
-    console.log(cardsMatched.length);
+    // console.log(movesToMatchedRatio);
+    // console.log(cardsMatched.length);
       if (movesCounter === 2) {
         displayTwoStars();
       } else if (movesCounter === 4) {
@@ -217,28 +220,35 @@ restart.addEventListener('click' ,  function event() {
   resetGame();
 });
 
+// Modal window pop up and statistics
+const modal = document.querySelector('.modal');
+function modalOnOff() {
+  modal.classList.toggle('visible');
+}
 
-//
-//
-// function resetStarScore() {
-//   clearInterval(starId);
-//   displayThreeStars();
-// }
-//
-// function resetMoves() {
-// moves = 0;
-// document.querySelector('.moves').innerHTML = moves;
-// }
-//
-// function resetCardsClass() {
-//   const cards= document.querySelectorAll('.card');
-//   for (let card of cards) {
-//     card.className = 'card';
+
+deck.addEventListener('click', event => {
+const clickTarget = event.target;
+if (cardsMatched.length === 16) {
+  modalOnOff();
+}
+});
+
+
+// Modal window close and play again
+const playAgain = document.querySelector('.modal_play_again');
+playAgain.addEventListener('click', event => {
+const clickTarget = event.target;
+console.log("I was clicked!");
+  resetGame();
+  modalOnOff();
+
+});
+
+
+// setInterval (function() {
+//   console.log("100");
+//   if (cardsMatched.length === 16) {
+//     modalOnOff();
 //   }
-// // }
-//
-// const restart = document.querySelector('.restart');
-// restart.addEventListener('click' ,  function event() {
-//   const clickTarget = event.target;
-//   resetGame();
-// });
+// }, 5000);
