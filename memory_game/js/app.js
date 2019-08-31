@@ -10,6 +10,7 @@ let movesCounter = 0;
 let clockOff = true;
 let time = 0;
 let clockId;
+let starID;
 
  // shuffle the array of cards
  Array.prototype.shuffle = function() {
@@ -26,9 +27,11 @@ let clockId;
 
  // display the cards on the page
 
-  for (card of shuffledCards) {
+function displayCards() {
+    for (card of shuffledCards) {
     deck.appendChild(card);
   }
+}
 
 //add listeners to cards, flip them; match and add to arrays
 
@@ -133,7 +136,7 @@ function displayThreeStars() {
 }
 
 function starScore() {
-  setInterval(function() {
+  starId = setInterval(function() {
   movesToMatchedRatio = cardsMatched.length / (movesCounter + 0.001);
     if (movesCounter === 2) {
       displayTwoStars();
@@ -154,12 +157,42 @@ function starScore() {
   }, 1000);
 }
 starScore();
-// if (movesCounter === 2) {
-//   displayTwoStars();
-// } else if (movesCounter === 4) {
-//   displayOneStar();
+
+// reset game
+// 
+// function resetGame() {
+//   resetCardsClass();
+//   displayCards();
+//   stopClock()
+//   resetTimer();
+//   resetStarScore();
+//   resetMoves();
 // }
-// /*
- // *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- // *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- // */
+//
+// function resetTimer() {
+//   time = 0;
+//   displayTime();
+// }
+//
+// function resetStarScore() {
+//   clearInterval(starId);
+//   displayThreeStars();
+// }
+//
+// function resetMoves() {
+// moves = 0;
+// document.querySelector('.moves').innerHTML = moves;
+// }
+//
+// function resetCardsClass() {
+//   const cards= document.querySelectorAll('.card');
+//   for (let card of cards) {
+//     card.className = 'card';
+//   }
+// }
+//
+// const restart = document.querySelector('.restart');
+// restart.addEventListener('click' ,  function event() {
+//   const clickTarget = event.target;
+//   resetGame();
+// });
