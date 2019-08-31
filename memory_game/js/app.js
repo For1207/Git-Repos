@@ -107,7 +107,59 @@ function stopClock() {
   clearInterval(clockId);
 }
 
-/*
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+// add score
+const starOne = document.getElementById('star_one');
+const starTwo = document.getElementById('star_two');
+const starThree = document.getElementById('star_three');
+let movesToMatchedRatio;
+
+
+function displayOneStar() {
+  starOne.style.display = 'inline';
+  starTwo.style.display = 'none';
+  starThree.style.display = 'none';
+}
+
+function displayTwoStars() {
+  starOne.style.display = 'inline';
+  starTwo.style.display = 'inline';
+  starThree.style.display = 'none';
+}
+
+function displayThreeStars() {
+  starOne.style.display = 'inline';
+  starTwo.style.display = 'inline';
+  starThree.style.display = 'inline';
+}
+
+function starScore() {
+  setInterval(function() {
+  movesToMatchedRatio = cardsMatched.length / (movesCounter + 0.001);
+    if (movesCounter === 2) {
+      displayTwoStars();
+    } else if (movesCounter === 4) {
+      displayOneStar();
+    }
+    if (movesCounter > 4) {
+      if (movesToMatchedRatio > 0 &&
+          movesToMatchedRatio < 0.2) {
+          displayOneStar();
+        } else if (movesToMatchedRatio >= 0.22 &&
+                  movesToMatchedRatio < 0.4) {
+                  displayTwoStars();
+        } else if (movesToMatchedRatio >= 0.4) {
+                  displayThreeStars();
+        }
+    }
+  }, 1000);
+}
+starScore();
+// if (movesCounter === 2) {
+//   displayTwoStars();
+// } else if (movesCounter === 4) {
+//   displayOneStar();
+// }
+// /*
+ // *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ // *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ // */
