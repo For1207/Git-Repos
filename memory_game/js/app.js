@@ -137,20 +137,22 @@ function displayThreeStars() {
 
 function starScore() {
   starId = setInterval(function() {
-  movesToMatchedRatio = cardsMatched.length / (movesCounter + 0.001);
-    if (movesCounter === 2) {
-      displayTwoStars();
-    } else if (movesCounter === 4) {
-      displayOneStar();
-    }
-    if (movesCounter > 4) {
+    movesToMatchedRatio = cardsMatched.length / (movesCounter + 1);
+    console.log(movesToMatchedRatio);
+    console.log(cardsMatched.length);
+      if (movesCounter === 2) {
+        displayTwoStars();
+      } else if (movesCounter === 4) {
+        displayOneStar();
+      }
+      if (movesCounter > 4) {
       if (movesToMatchedRatio > 0 &&
-          movesToMatchedRatio < 0.2) {
+          movesToMatchedRatio < 0.3) {
           displayOneStar();
-        } else if (movesToMatchedRatio >= 0.22 &&
-                  movesToMatchedRatio < 0.4) {
+        } else if (movesToMatchedRatio >= 0.3 &&
+                  movesToMatchedRatio < 0.6) {
                   displayTwoStars();
-        } else if (movesToMatchedRatio >= 0.4) {
+        } else if (movesToMatchedRatio >= 0.6) {
                   displayThreeStars();
         }
     }
@@ -179,6 +181,7 @@ function resetClock() {
 
 function resetScore() {
   stopScore();
+  cardsMatched = [];
   movesToMatchedRatio = 0;
   displayThreeStars();
 }
@@ -202,6 +205,7 @@ function resetGame() {
   stopClock();
   resetClock();
   resetScore();
+  starScore();
   movesReset ();
   resetDeck ();
 
