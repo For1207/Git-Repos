@@ -1,5 +1,4 @@
 // set array of cards
-
 let card = document.getElementsByClassName('card');
 const cards = [...card];
 let cardsOpened = [];
@@ -23,19 +22,23 @@ let starID;
    }
    return this;
  }
- const shuffledCards = cards.shuffle();
+ let shuffledCards = cards.shuffle();
 
  // display the cards on the page
-
 function displayCards() {
     for (card of shuffledCards) {
     deck.appendChild(card);
   }
 }
+displayCards();
+
+// moves counter
+const movesSelector = document.querySelector('.moves');
+function moves() {
+  movesCounter = ++movesCounter;
+  movesSelector.innerHTML = movesCounter;}
 
 //add listeners to cards, flip them; match and add to arrays
-
-
 deck.addEventListener('click', event => {
 const clickTarget = event.target;
 
@@ -45,17 +48,15 @@ if (clickTarget.classList.contains('card') &&
   clickTarget.classList.toggle('show');
   cardsOpened.push(clickTarget);
   }
-// clear array of opened cards
 
+// clear array of opened cards
 function clearCardsOpened() {
   for ( let i = 0; i < cardsOpened.length; i++) {
     cardsOpened[i].classList.toggle('open');
     cardsOpened[i].classList.toggle('show');
     }
   cardsOpened = [];
-  // add moves counter
-  movesCounter = ++movesCounter;
-  document.querySelector('.moves').innerHTML = movesCounter;
+  moves();
   }
 
 if (cardsOpened.length === 2) {
@@ -68,7 +69,7 @@ if (cards.indexOf(cardsOpened[0]) !== cards.indexOf(cardsOpened[1])) {
     } else {
         setTimeout(function() {
         clearCardsOpened()
-        }, 800);
+      }, 650);
       }
   }
 }
@@ -77,6 +78,7 @@ if (cardsOpened.length > 2){
 }
 });
 
+// add clock and display time
 function startClock() {
   clockId = setInterval(() => {
   time++;
@@ -90,7 +92,7 @@ deck.addEventListener('click', function event() {
       startClock();
       clockOff = false;
     }
-    if (cardsMatched.length === 16) {
+    if (cardsMatched.length === 4) {
       stopClock();
     }
 })
@@ -104,10 +106,6 @@ function displayTime() {
 } else {
   clock.innerHTML = minutes + ' : ' + seconds;
 }
-}
-
-function stopClock() {
-  clearInterval(clockId);
 }
 
 // add score
@@ -158,21 +156,59 @@ function starScore() {
 }
 starScore();
 
+
+//stop game
+
+function stopClock() {
+  clearInterval(clockId);
+  clockOff = true;
+};
+
+function stopScore() {
+  clearInterval(starId);
+}
+
 // reset game
-// 
-// function resetGame() {
-//   resetCardsClass();
-//   displayCards();
-//   stopClock()
-//   resetTimer();
-//   resetStarScore();
-//   resetMoves();
-// }
+
+function resetClock() {
+  time = 0;
+  displayTime();
+}
+
+function resetScore() {
+  stopScore();
+  movesToMatchedRatio = 0;
+  displayThreeStars();
+}
+
+function movesReset () {
+  movesCounter = 0;
+  movesSelector.innerHTML = movesCounter;
+}
+
+function resetDeck () {
+  shuffledCards = cards.shuffle();
+  displayCards();
+}
+
+
+function resetGame() {
+  stopClock();
+  resetClock();
+  resetScore();
+  movesReset ();
+  resetDeck ();
+
+}
+
+const restart = document.querySelector('.restart');
+restart.addEventListener('click' ,  function event() {
+  const clickTarget = event.target;
+  resetGame();
+});
+
+
 //
-// function resetTimer() {
-//   time = 0;
-//   displayTime();
-// }
 //
 // function resetStarScore() {
 //   clearInterval(starId);
