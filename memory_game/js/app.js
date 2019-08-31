@@ -95,6 +95,7 @@ deck.addEventListener('click', function event() {
       clockOff = false;
     }
     if (cardsMatched.length === 4) {
+    if (cardsMatched.length === 16) {
       stopClock();
     }
 })
