@@ -112,7 +112,6 @@ h1, .modal {
 }
 
 .modal {
-  /* visibility: hidden; */
   display: none;
   justify-content: center;
   align-items: center;
@@ -130,12 +129,12 @@ h1, .modal {
 }
 
 .checkmark {
-  width: 115px;
-  height: 115px;
+  width: 110px;
+  height: 110px;
   padding: 8px;
   border: solid 4px lightgrey;
   border-radius: 50%;
-  opacity: 0.35;
+  opacity: 0.5;
 }
 
 .modal h1 {

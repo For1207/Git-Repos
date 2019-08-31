@@ -138,6 +138,7 @@ function displayThreeStars() {
   starThree.style.display = 'inline';
 }
 
+let starsNumber = 0;
 function starScore() {
   starId = setInterval(function() {
     movesToMatchedRatio = cardsMatched.length / (movesCounter + 1);
@@ -152,11 +153,14 @@ function starScore() {
       if (movesToMatchedRatio > 0 &&
           movesToMatchedRatio < 0.3) {
           displayOneStar();
+          starsNumber = 1;
         } else if (movesToMatchedRatio >= 0.3 &&
                   movesToMatchedRatio < 0.6) {
                   displayTwoStars();
+                  starsNumber = 2;
         } else if (movesToMatchedRatio >= 0.6) {
                   displayThreeStars();
+                  starsNumber = 3;
         }
     }
   }, 1000);
@@ -231,6 +235,8 @@ deck.addEventListener('click', event => {
 const clickTarget = event.target;
 if (cardsMatched.length === 16) {
   modalOnOff();
+  document.querySelector('.modal_stats').innerHTML = 'With ' + movesCounter + ' Moves and '
+  + starsNumber + ' Stars in ' + minutes + ':' + seconds;
 }
 });
 
@@ -244,11 +250,3 @@ console.log("I was clicked!");
   modalOnOff();
 
 });
-
-
-// setInterval (function() {
-//   console.log("100");
-//   if (cardsMatched.length === 16) {
-//     modalOnOff();
-//   }
-// }, 5000);
