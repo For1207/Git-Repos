@@ -22,11 +22,13 @@ let starID;
    }
    return this;
  }
- let shuffledCards = cards.shuffle();
+
+
 
  // display the cards on the page
 function displayCards() {
-    for (card of shuffledCards) {
+  let shuffledCards = cards.shuffle();
+  for (card of shuffledCards) {
     deck.appendChild(card);
   }
 }
@@ -187,9 +189,13 @@ function movesReset () {
 }
 
 function resetDeck () {
-  shuffledCards = cards.shuffle();
+  const cards= document.querySelectorAll('.card');
+  for (let card of cards) {
+    card.className = 'card'
+  }
   displayCards();
 }
+
 
 
 function resetGame() {
@@ -225,7 +231,7 @@ restart.addEventListener('click' ,  function event() {
 //   for (let card of cards) {
 //     card.className = 'card';
 //   }
-// }
+// // }
 //
 // const restart = document.querySelector('.restart');
 // restart.addEventListener('click' ,  function event() {
