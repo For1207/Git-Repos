@@ -242,8 +242,14 @@ deck.addEventListener('click', event => {
 const clickTarget = event.target;
 if (cardsMatched.length === 16) {
   modalOnOff();
-  document.querySelector('.modal_stats').innerHTML = 'With ' + movesCounter + ' Moves and '
-  + starsNumber + ' Stars in ' + minutes + ':' + seconds;
+  if (seconds < 10) {
+    document.querySelector('.modal_stats').innerHTML = 'With ' + movesCounter + ' Moves and '
+    + starsNumber + ' Stars in ' + minutes + ':0' + seconds;
+  } else {
+    document.querySelector('.modal_stats').innerHTML = 'With ' + movesCounter + ' Moves and '
+    + starsNumber + ' Stars in ' + minutes + ':' + seconds;
+  }
+
 }
 });
 
