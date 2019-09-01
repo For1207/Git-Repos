@@ -220,7 +220,16 @@ function resetGame() {
 const restart = document.querySelector('.restart');
 restart.addEventListener('click' ,  function event() {
   const clickTarget = event.target;
-  resetGame();
+  restart.animate([
+    {transform: 'rotate(0deg)'},
+    {transform: 'rotate(360deg)'},
+  ], {
+    duration: 1000,
+  });
+  setTimeout(function(){
+    resetGame();
+  }, 1000);
+
 });
 
 // Modal window pop up and statistics
@@ -244,7 +253,7 @@ if (cardsMatched.length === 16) {
 const playAgain = document.querySelector('.modal_play_again');
 playAgain.addEventListener('click', event => {
 const clickTarget = event.target;
-console.log("I was clicked!");
+// console.log("I was clicked!");
   resetGame();
   modalOnOff();
 

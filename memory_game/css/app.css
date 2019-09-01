@@ -68,6 +68,15 @@ h1, .modal {
    }
  }
 
+ @keyframes rotate {
+  from {
+        transform:rotate(0deg);
+  }
+  to {
+        transform:rotate(360deg);
+    }
+}
+
 .clock {
   padding-right: 7px;
 }
@@ -149,6 +158,9 @@ h1, .modal {
 .score-panel .restart {
   float: right;
   cursor: pointer;
+  animation-name: rotate;
+  animation-duration: 1s;
+
 }
 
 .modal {
