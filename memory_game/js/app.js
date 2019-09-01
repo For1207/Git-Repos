@@ -112,9 +112,9 @@ function displayTime() {
 }
 
 // add score
-const starOne = document.getElementById('star_one');
-const starTwo = document.getElementById('star_two');
-const starThree = document.getElementById('star_three');
+const starOne = document.querySelector('.star-one');
+const starTwo = document.querySelector('.star-two');
+const starThree = document.querySelector('.star-three');
 let movesToMatchedRatio;
 
 
@@ -243,10 +243,10 @@ const clickTarget = event.target;
 if (cardsMatched.length === 16) {
   modalOnOff();
   if (seconds < 10) {
-    document.querySelector('.modal_stats').innerHTML = 'With ' + movesCounter + ' Moves and '
+    document.querySelector('.modal-stats').innerHTML = 'With ' + movesCounter + ' Moves and '
     + starsNumber + ' Stars in ' + minutes + ':0' + seconds;
   } else {
-    document.querySelector('.modal_stats').innerHTML = 'With ' + movesCounter + ' Moves and '
+    document.querySelector('.modal-stats').innerHTML = 'With ' + movesCounter + ' Moves and '
     + starsNumber + ' Stars in ' + minutes + ':' + seconds;
   }
 
@@ -255,7 +255,7 @@ if (cardsMatched.length === 16) {
 
 
 // Modal window close and play again
-const playAgain = document.querySelector('.modal_play_again');
+const playAgain = document.querySelector('.modal-play-again');
 playAgain.addEventListener('click', event => {
 const clickTarget = event.target;
 // console.log("I was clicked!");

@@ -1,5 +1,5 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
@@ -8,77 +8,86 @@ html {
     box-sizing: inherit;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background: url('../images/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+  background: url(../images/geometry2.png);
+  font-family: "Coda", cursive;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
 }
 
-/*
- * Styles for the deck of cards
- */
- @keyframes card_from_closed_to_opened {
-   from {background-color: #2e3d49;}
-   to {background-color: #02b3e4;}
- }
-
- @keyframes card_from_opened_to_closed {
-   from {background-color: #02b3e4;}
-   to {background-color: #2e3d49;}
- }
-
- @keyframes card_from_opened_to_matched {
-   from {background-color: #02b3e4;}
-   to {background-color: #02ccba;}
- }
-
- @keyframes pulse {
-   from {
-     -webkit-transform: scale3d(1, 1, 1);
-     transform: scale3d(1, 1, 1);
-   }
-
-   50% {
-     -webkit-transform: scale3d(1.05, 1.05, 1.05);
-     transform: scale3d(1.05, 1.05, 1.05);
-   }
-
-   to {
-     -webkit-transform: scale3d(1, 1, 1);
-     transform: scale3d(1, 1, 1);
-   }
- }
-
- @keyframes rotate {
+  /*Animation for  the game */
+@keyframes card-from-closed-to-opened {
   from {
-        transform:rotate(0deg);
+    background: #2e3d49;
+  }
+
+  to {
+    background: #02b3e4;
+  }
+}
+
+@keyframes card-from-opened-to-closed {
+  from {
+    background: #02b3e4;
+  }
+
+  to {
+    background: #2e3d49;
+  }
+}
+
+@keyframes card-from-opened-to-matched {
+  from {
+    background: #02b3e4;
   }
   to {
-        transform:rotate(360deg);
-    }
+    background: #02ccba;
+  }
 }
 
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes rotate {
+  from {
+        transform: rotate(0deg);
+  }
+  to {
+        transform: rotate(360deg);
+  }
+}
+
+  /* Styles for the deck of cards*/
 .clock {
-  padding-right: 7px;
+  padding: 0 7px 0 0;
 }
 
 .deck {
@@ -100,29 +109,28 @@ h1 {
   width: 125px;
   background: #2e3d49;
   font-size: 33px;
-  color: #ffffff;
+  color: #fff;
   border-radius: 8px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
-  animation-name: card_from_opened_to_closed;
+  animation-name: card-from-opened-to-closed;
   animation-duration: 0.6s;
-
 }
 
 .deck .card.open {
   transform: rotateY(0);
   background: #02b3e4;
   cursor: default;
-  animation-name: card_from_closed_to_opened, pulse;
+  animation-name: card-from-closed-to-opened, pulse;
   animation-duration: 0.6s;
   height: 125px;
   width: 125px;
   background: #2e3d49;
   font-size: 33px;
-  color: #ffffff;
+  color: #fff;
   border-radius: 8px;
   cursor: pointer;
   display: flex;
@@ -132,34 +140,31 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
+  transform: rotateY(0);
+  background: #02b3e4;
+  cursor: default;
 }
 
 .deck .card.show {
-    font-size: 33px;
+  font-size: 33px;
 }
 
 .deck .card.match {
   cursor: default;
   background: #02ccba;
   font-size: 33px;
-  animation-name: card_from_opened_to_matched, pulse;
+  animation-name: card-from-opened-to-matched, pulse; /*  here and bellow: Don't use the _animation_ shorhand. In makes keyframes' work asynchronous, even if the same time duration is declared */
   animation-duration: 0.6s;
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
+  cursor: default;
+  background: #02ccba;
+  font-size: 33px;
 }
 
-/*
- * Styles for the Score Panel
- */
-
+  /* Styles for the Score Panel*/
 .score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+  text-align: left;
+  width: 345px;
+  margin-bottom: 10px;
 }
 
 .score-panel .stars {
@@ -167,16 +172,16 @@ h1 {
   padding: 0;
   display: inline-block;
   margin: 0 5px 0 0;
-  color: orange;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+  color: #ffa500;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0;
 }
 
 .score-panel .stars li {
-    list-style: none;
-    display: inline-block;
+  list-style: none;
+  display: inline-block;
 }
 
 .score-panel .restart {
@@ -184,9 +189,9 @@ h1 {
   cursor: pointer;
   animation-name: rotate;
   animation-duration: 1s;
-
 }
 
+  /* Styles for the Modal Window*/
 .modal {
   display: none;
   justify-content: center;
@@ -211,38 +216,38 @@ h1 {
   border: solid 4px lightgrey;
   border-radius: 50%;
   opacity: 0.5;
-  animation-duration: 3s;
+  animation-duration: 3s; /*here and below: keyframes are declared in index.html in the <head> and class name of */
 }
 
-.modal h1 {
+.modal-header {
   font-size: 42px;
   font-weight: 700;
   color: #4a4a4a;
   letter-spacing: -2px;
   animation-delay: 1s;
 }
- .modal_stats, .modal_exclamation {
+
+ .modal-stats, .modal-exclamation {
   font-size: 22px;
   letter-spacing: -1px;
   color: #4a4a4a;
   animation-delay: 2s;
-
 }
 
-.modal_play_again {
-margin-top: 40px;
-width: 210px;
-height: 52px;
-background-color: #02ccba;
-color: white;
-text-align: center;
-padding: 11px 0;
-font-size: 22px;
-font-weight: bold;
-border-radius: 6px;
-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.25);
-cursor: pointer;
-animation-delay: 3s;
-float: right;
-cursor: pointer;
+.modal-play-again {
+  margin-top: 40px;
+  width: 210px;
+  height: 52px;
+  background-color: #02ccba;
+  color: #fff;
+  text-align: center;
+  padding: 11px 0;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.25);
+  cursor: pointer;
+  animation-delay: 3s;
+  float: right;
+  cursor: pointer;
 }
