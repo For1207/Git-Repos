@@ -24,7 +24,6 @@ let starID;
  }
 
 
-
  // display the cards on the page
 function displayCards() {
   let shuffledCards = cards.shuffle();
@@ -94,7 +93,6 @@ deck.addEventListener('click', function event() {
       startClock();
       clockOff = false;
     }
-    if (cardsMatched.length === 4) {
     if (cardsMatched.length === 16) {
       stopClock();
     }

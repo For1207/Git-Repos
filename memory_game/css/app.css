@@ -36,6 +36,38 @@ h1, .modal {
 /*
  * Styles for the deck of cards
  */
+ @keyframes card_from_closed_to_opened {
+   from {background-color: #2e3d49;}
+   to {background-color: #02b3e4;}
+ }
+
+ @keyframes card_from_opened_to_closed {
+   from {background-color: #02b3e4;}
+   to {background-color: #2e3d49;}
+ }
+
+ @keyframes card_from_opened_to_matched {
+   from {background-color: #02b3e4;}
+   to {background-color: #02ccba;}
+ }
+
+ @keyframes pulse {
+   from {
+     -webkit-transform: scale3d(1, 1, 1);
+     transform: scale3d(1, 1, 1);
+   }
+
+   50% {
+     -webkit-transform: scale3d(1.05, 1.05, 1.05);
+     transform: scale3d(1.05, 1.05, 1.05);
+   }
+
+   to {
+     -webkit-transform: scale3d(1, 1, 1);
+     transform: scale3d(1, 1, 1);
+   }
+ }
+
 .clock {
   padding-right: 7px;
 }
@@ -66,12 +98,17 @@ h1, .modal {
   justify-content: center;
   align-items: center;
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  animation-name: card_from_opened_to_closed;
+  animation-duration: 0.6s;
+
 }
 
 .deck .card.open {
   transform: rotateY(0);
   background: #02b3e4;
   cursor: default;
+  animation-name: card_from_closed_to_opened, pulse;
+  animation-duration: 0.6s;
 }
 
 .deck .card.show {
@@ -82,6 +119,8 @@ h1, .modal {
   cursor: default;
   background: #02ccba;
   font-size: 33px;
+  animation-name: card_from_opened_to_matched, pulse;
+  animation-duration: 0.6s;
 }
 
 /*
@@ -99,6 +138,7 @@ h1, .modal {
   padding: 0;
   display: inline-block;
   margin: 0 5px 0 0;
+  color: orange;
 }
 
 .score-panel .stars li {
@@ -135,19 +175,20 @@ h1, .modal {
   border: solid 4px lightgrey;
   border-radius: 50%;
   opacity: 0.5;
+  animation-duration: 3s;
 }
 
 .modal h1 {
   font-size: 42px;
   font-weight: 700;
+  color: #4a4a4a;
   letter-spacing: -2px;
-  opacity: 0.65;
   animation-delay: 1s;
 }
  .modal_stats, .modal_exclamation {
   font-size: 22px;
   letter-spacing: -1px;
-  opacity: 0.55;
+  color: #4a4a4a;
   animation-delay: 2s;
 
 }
@@ -166,5 +207,4 @@ border-radius: 6px;
 box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.25);
 cursor: pointer;
 animation-delay: 3s;
-/* animation-duration: 5s; */
 }
