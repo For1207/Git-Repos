@@ -1,4 +1,4 @@
-// set array of cards
+
 let card = document.getElementsByClassName('card');
 const cards = [...card];
 let cardsOpened = [];
@@ -23,8 +23,7 @@ let starID;
    return this;
  }
 
-
- // display the cards on the page
+// display the cards on the page
 function displayCards() {
   let shuffledCards = cards.shuffle();
   for (card of shuffledCards) {
