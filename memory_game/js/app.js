@@ -1,4 +1,3 @@
-
 let card = document.getElementsByClassName('card');
 const cards = [...card];
 let cardsOpened = [];
@@ -11,19 +10,19 @@ let time = 0;
 let clockId;
 let starID;
 
- // shuffle the array of cards
- Array.prototype.shuffle = function() {
-   var i = this.length, j, temp;
-   while(--i > 0) {
-     j = Math.floor(Math.random() * (i + 1));
-     temp = this[j];
-     this[j] = this[i];
-     this[i] = temp;
-   }
-   return this;
+  // Shuffle the array of cards
+Array.prototype.shuffle = function() {
+  let i = this.length, j, temp;
+  while(--i > 0) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = this[j];
+    this[j] = this[i];
+    this[i] = temp;
+  }
+  return this;
  }
 
-// display the cards on the page
+ // Display the cards on the page
 function displayCards() {
   let shuffledCards = cards.shuffle();
   for (card of shuffledCards) {
@@ -32,91 +31,95 @@ function displayCards() {
 }
 displayCards();
 
-// moves counter
+  // Moves counter
 const movesSelector = document.querySelector('.moves');
 function moves() {
   movesCounter = ++movesCounter;
-  movesSelector.innerHTML = movesCounter;}
+  movesSelector.innerHTML = movesCounter;
+}
 
-//add listeners to cards, flip them; match and add to arrays
+  //Add listeners to cards, flip them, match and add to arrays
 deck.addEventListener('click', event => {
-const clickTarget = event.target;
+  const clickTarget = event.target;
 
-if (clickTarget.classList.contains('card') &&
-  !clickTarget.classList.contains('match')) {
-  clickTarget.classList.toggle('open');
-  clickTarget.classList.toggle('show');
-  cardsOpened.push(clickTarget);
-  }
-
-// clear array of opened cards
-function clearCardsOpened() {
-  for ( let i = 0; i < cardsOpened.length; i++) {
-    cardsOpened[i].classList.toggle('open');
-    cardsOpened[i].classList.toggle('show');
+    //Flip cards and add to array of opened cards
+    if (clickTarget.classList.contains('card') &&
+        !clickTarget.classList.contains('match')) {
+          clickTarget.classList.toggle('open');
+          clickTarget.classList.toggle('show');
+          cardsOpened.push(clickTarget);
     }
-  cardsOpened = [];
-  moves();
+
+    // Clear array of opened cards
+  function clearCardsOpened() {
+    for ( let i = 0; i < cardsOpened.length; i++) {
+      cardsOpened[i].classList.toggle('open');
+      cardsOpened[i].classList.toggle('show');
+      }
+    cardsOpened = [];
+    moves();
   }
 
-if (cardsOpened.length === 2) {
-if (cards.indexOf(cardsOpened[0]) !== cards.indexOf(cardsOpened[1])) {
-  if (cardsOpened[0].firstElementChild.className === cardsOpened[1].firstElementChild.className) {
-    cardsOpened[0].classList.add('match');
-    cardsOpened[1].classList.add('match');
-    cardsMatched.unshift(cardsOpened[0], cardsOpened[1]);
-    clearCardsOpened();
-    } else {
-        setTimeout(function() {
-        clearCardsOpened()
-      }, 650);
+    //Match opened cards by using their index names' in the initial array and, if mathced,
+    //add them to array of mathched cards, and leave them opened,
+    //if not, close them and clear array of opened cards
+  if (cardsOpened.length === 2) {
+    if (cards.indexOf(cardsOpened[0]) !== cards.indexOf(cardsOpened[1])) {
+      if (cardsOpened[0].firstElementChild.className === cardsOpened[1].firstElementChild.className) {
+        cardsOpened[0].classList.add('match');
+        cardsOpened[1].classList.add('match');
+        cardsMatched.unshift(cardsOpened[0], cardsOpened[1]);
+        clearCardsOpened();
+      } else {
+          setTimeout(function() {
+          clearCardsOpened()
+          }, 650);
+        }
       }
   }
-}
-if (cardsOpened.length > 2){
-    clearCardsOpened();
-}
+  if (cardsOpened.length > 2){
+      clearCardsOpened();
+  }
 });
 
-// add clock and display time
+  // Add clock and display time.
 function startClock() {
   clockId = setInterval(() => {
   time++;
   displayTime();
   }, 1000);
-  }
-
+}
+    //The clock start after the first card was opened and stop when all cards are matched
 deck.addEventListener('click', function event() {
   const clickTarget = event.target;
-    if(clockOff) {
-      startClock();
-      clockOff = false;
-    }
-    if (cardsMatched.length === 16) {
-      stopClock();
-    }
+  if(clockOff) {
+    startClock();
+    clockOff = false;
+  }
+  if (cardsMatched.length === 16) {
+    stopClock();
+  }
 })
 
+    //Convert milliseconds to seconds and minutes and display them
 let minutes = 0;
 let seconds = 0;
-
 function displayTime() {
   minutes = Math.floor(time / 60);
   seconds = time % 60;
   const clock = document.querySelector('.clock');
   if (seconds < 10) {
-  clock.innerHTML = minutes + ' : ' + '0' + seconds;
-} else {
-  clock.innerHTML = minutes + ' : ' + seconds;
-}
+    clock.innerHTML = minutes + ' : ' + '0' + seconds;
+  } else {
+      clock.innerHTML = minutes + ' : ' + seconds;
+    }
 }
 
-// add score
+  // Add  a score
 const starOne = document.querySelector('.star-one');
 const starTwo = document.querySelector('.star-two');
 const starThree = document.querySelector('.star-three');
 let movesToMatchedRatio;
-
 
 function displayOneStar() {
   starOne.style.display = 'inline';
@@ -135,39 +138,37 @@ function displayThreeStars() {
   starTwo.style.display = 'inline';
   starThree.style.display = 'inline';
 }
-
-let starsNumber = 0;
+    //Score logic: the score fall down from 3 to 1 by a star after the second and the fourth moves accordingly.
+    // After that use ratio of matched cards and moves. One move - when two cards have been compared.
+    //Compare the ratio with coefficients, assign 1, 2 of 3 stars and display them.
+let starsNumber = 0;  //Stars number to display on the modal screen
 function starScore() {
   starId = setInterval(function() {
-    movesToMatchedRatio = cardsMatched.length / (movesCounter + 1);
-    // console.log(movesToMatchedRatio);
-    // console.log(cardsMatched.length);
-      if (movesCounter === 2) {
-        displayTwoStars();
-      } else if (movesCounter === 4) {
+    movesToMatchedRatio = cardsMatched.length / (movesCounter + 0.001);
+    if (movesCounter === 2) {
+      displayTwoStars();
+    } else if (movesCounter === 4) {
         displayOneStar();
       }
-      if (movesCounter > 4) {
+    if (movesCounter > 4) {
       if (movesToMatchedRatio > 0 &&
           movesToMatchedRatio < 0.3) {
-          displayOneStar();
-          starsNumber = 1;
-        } else if (movesToMatchedRatio >= 0.3 &&
-                  movesToMatchedRatio < 0.6) {
-                  displayTwoStars();
-                  starsNumber = 2;
+            displayOneStar();
+            starsNumber = 1;
+      } else if (movesToMatchedRatio >= 0.3 &&
+                movesToMatchedRatio < 0.6) {
+                displayTwoStars();
+                starsNumber = 2;
         } else if (movesToMatchedRatio >= 0.6) {
-                  displayThreeStars();
-                  starsNumber = 3;
-        }
+                displayThreeStars();
+                starsNumber = 3;
+          }
     }
   }, 1000);
 }
 starScore();
 
-
-//stop game
-
+  //Stop the game
 function stopClock() {
   clearInterval(clockId);
   clockOff = true;
@@ -177,8 +178,7 @@ function stopScore() {
   clearInterval(starId);
 }
 
-// reset game
-
+  // Reset the game
 function resetClock() {
   time = 0;
   displayTime();
@@ -196,6 +196,7 @@ function movesReset () {
   movesSelector.innerHTML = movesCounter;
 }
 
+    //Close all cards by assigning them class 'card'
 function resetDeck () {
   const cards= document.querySelectorAll('.card');
   for (let card of cards) {
@@ -203,9 +204,7 @@ function resetDeck () {
   }
   displayCards();
 }
-
-
-
+    //Stop and reset clock, reset the score, reset moves, shuffle and 'close' cards
 function resetGame() {
   stopClock();
   resetClock();
@@ -213,9 +212,12 @@ function resetGame() {
   starScore();
   movesReset ();
   resetDeck ();
-
 }
 
+  //The functional and animation of reset icon:
+    //Add a click listener to the icon
+    //Reset the game after the click
+    //Rotate if clicked
 const restart = document.querySelector('.restart');
 restart.addEventListener('click' ,  function event() {
   const clickTarget = event.target;
@@ -228,38 +230,35 @@ restart.addEventListener('click' ,  function event() {
   setTimeout(function(){
     resetGame();
   }, 1000);
-
 });
 
-// Modal window pop up and statistics
+  // Modal window  and statistics
 const modal = document.querySelector('.modal');
 function modalOnOff() {
   modal.classList.toggle('visible');
 }
 
-
+    //Add a click listener.
+      //If after the click all cards are matched, open the modal and display:
+      //an animated checkmark,  a congrtulation message, and counters for moves, stars and time
 deck.addEventListener('click', event => {
-const clickTarget = event.target;
-if (cardsMatched.length === 16) {
-  modalOnOff();
-  if (seconds < 10) {
-    document.querySelector('.modal-stats').innerHTML = 'With ' + movesCounter + ' Moves and '
-    + starsNumber + ' Stars in ' + minutes + ':0' + seconds;
-  } else {
-    document.querySelector('.modal-stats').innerHTML = 'With ' + movesCounter + ' Moves and '
-    + starsNumber + ' Stars in ' + minutes + ':' + seconds;
+  const clickTarget = event.target;
+  if (cardsMatched.length === 16) {
+    modalOnOff();
+    if (seconds < 10) {
+      document.querySelector('.modal-stats').innerHTML = 'With ' + movesCounter + ' Moves and ' +
+      starsNumber + ' Stars in ' + minutes + ':0' + seconds;
+    } else {
+        document.querySelector('.modal-stats').innerHTML = 'With ' + movesCounter + ' Moves and ' +
+        starsNumber + ' Stars in ' + minutes + ':' + seconds;
+      }
   }
-
-}
 });
 
-
-// Modal window close and play again
+  // Modal window close and play again 'button'
 const playAgain = document.querySelector('.modal-play-again');
-playAgain.addEventListener('click', event => {
-const clickTarget = event.target;
-// console.log("I was clicked!");
-  resetGame();
-  modalOnOff();
-
+playAgain.addEventListener('click', function event() {
+  const clickTarget = event.target;
+    resetGame();
+    modalOnOff();
 });
