@@ -30,6 +30,8 @@ body {
 h1 {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
+  margin: 100px 0 50px;
+  font-size: 36px;
 }
 
   /*Animation for  the game */
@@ -87,15 +89,15 @@ h1 {
 
   /* Styles for the deck of cards*/
 .clock {
-  padding: 0 7px 0 0;
+  padding: 0 3px 0 20px;
 }
 
 .deck {
-  width: 660px;
-  min-height: 680px;
+  width: 480px;
+  min-height: 480px;
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-  padding: 32px;
-  border-radius: 10px;
+  padding: 20px;
+  border-radius: 8px;
   box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
   display: flex;
   flex-wrap: wrap;
@@ -105,8 +107,8 @@ h1 {
 }
 
 .deck .card {
-  height: 125px;
-  width: 125px;
+  height: 96px;
+  width: 96px;
   background: #2e3d49;
   font-size: 0;
   color: #fff;
@@ -126,10 +128,10 @@ h1 {
   cursor: default;
   animation-name: card-from-closed-to-opened, pulse;
   animation-duration: 0.6s;
-  height: 125px;
-  width: 125px;
+  height: 96px;
+  width: 96px;
   background: #2e3d49;
-  font-size: 33px;
+  font-size: 24px;
   color: #fff;
   border-radius: 8px;
   cursor: pointer;
@@ -146,25 +148,23 @@ h1 {
 }
 
 .deck .card.show {
-  font-size: 42px;
+  font-size: 33px;
 }
 
 .deck .card.match {
   cursor: default;
   background: #02ccba;
-  font-size: 33px;
+  font-size: 24px;
   animation-name: card-from-opened-to-matched, pulse; /*  here and bellow: Don't use the _animation_ shorhand. In makes keyframes' work asynchronous, even if the same time duration is declared */
   animation-duration: 0.6s;
-  cursor: default;
-  background: #02ccba;
-  font-size: 33px;
 }
 
   /* Styles for the Score Panel*/
 .score-panel {
   text-align: left;
-  width: 345px;
-  margin-bottom: 10px;
+  width: 480px;
+  margin: 0 10px 10px 10px;
+  font-size: 22px
 }
 
 .score-panel .stars {
@@ -182,8 +182,10 @@ h1 {
 .score-panel .restart {
   float: right;
   cursor: pointer;
+  margin-right: 30px;
   animation-name: rotate;
   animation-duration: 1s;
+  font-size: 24px;
 }
 
   /* Styles for the Modal Window*/
@@ -205,8 +207,8 @@ h1 {
 }
 
 .checkmark {
-  width: 110px;
-  height: 110px;
+  width: 112px;
+  height: 112px;
   padding: 8px;
   border: solid 4px lightgrey;
   border-radius: 50%;
@@ -215,7 +217,7 @@ h1 {
 }
 
 .modal-header {
-  font-size: 42px;
+  font-size: 38px;
   font-weight: 700;
   color: #4a4a4a;
   letter-spacing: -2px;
@@ -223,15 +225,15 @@ h1 {
 }
 
  .modal-stats, .modal-exclamation {
-  font-size: 22px;
+  font-size: 24px;
   letter-spacing: -1px;
   color: #4a4a4a;
   animation-delay: 2s;
 }
 
 .modal-play-again {
-  margin-top: 40px;
-  width: 210px;
+  margin-top: 36px;
+  width: 236px;
   height: 52px;
   background-color: #02ccba;
   color: #fff;
