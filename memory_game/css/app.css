@@ -108,7 +108,7 @@ h1 {
   height: 125px;
   width: 125px;
   background: #2e3d49;
-  font-size: 0;
+  font-size: 33px;
   color: #fff;
   border-radius: 8px;
   cursor: pointer;
@@ -158,6 +158,10 @@ h1 {
   cursor: default;
   background: #02ccba;
   font-size: 33px;
+}
+
+.disabled {
+  pointer-events: none; 
 }
 
   /* Styles for the Score Panel*/

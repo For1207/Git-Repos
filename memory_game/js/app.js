@@ -11,7 +11,7 @@ let clockId;
 let starID;
 
   // Shuffle the array of cards
-Array.prototype.shuffle = function() {
+Array.prototype.shuffle =function() {
   let i = this.length, j, temp;
   while(--i > 0) {
     j = Math.floor(Math.random() * (i + 1));
@@ -32,6 +32,8 @@ function displayCards() {
 displayCards();
 
   // Moves counter
+
+
 const movesSelector = document.querySelector('.moves');
 function moves() {
   movesCounter = ++movesCounter;
@@ -39,6 +41,7 @@ function moves() {
 }
 
   //Add listeners to cards, flip them, match and add to arrays
+
 deck.addEventListener('click', event => {
   const clickTarget = event.target;
 
@@ -47,6 +50,7 @@ deck.addEventListener('click', event => {
         !clickTarget.classList.contains('match')) {
           clickTarget.classList.toggle('open');
           clickTarget.classList.toggle('show');
+          clickTarget.classList.toggle('disabled'); //disable multiple clicks on one card, which invokes false increasing of the moves counter
           cardsOpened.push(clickTarget);
     }
 
@@ -55,9 +59,12 @@ deck.addEventListener('click', event => {
     for ( let i = 0; i < cardsOpened.length; i++) {
       cardsOpened[i].classList.toggle('open');
       cardsOpened[i].classList.toggle('show');
+      cardsOpened[i].classList.toggle('disabled');
       }
+    if (cardsOpened.length === 2) { //triggers the move counter only if two cards were matched
+      moves();
+    }
     cardsOpened = [];
-    moves();
   }
 
     //Match opened cards by using their index names' in the initial array and, if mathced,
@@ -72,7 +79,7 @@ deck.addEventListener('click', event => {
         clearCardsOpened();
       } else {
           setTimeout(function() {
-          clearCardsOpened()
+          clearCardsOpened();
           }, 650);
         }
       }

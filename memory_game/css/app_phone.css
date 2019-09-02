@@ -157,6 +157,10 @@ h1 {
   animation-duration: 0.6s;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
   /* Styles for the Score Panel*/
 .score-panel {
   text-align: left;
