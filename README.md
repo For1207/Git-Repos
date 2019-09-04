@@ -16,7 +16,7 @@ A some starter code was provided.
 
 ## Implementation
 
-At the beginning we have a static image with no interactivity. 'Cards' are [Font Awesome](https://fontawesome.com/icons?from=io) icons with unique class names "fa fa-****" for each pair, located as unorder list items with common class name 'card'.
+At the beginning we have a static image with no interactivity. 'Cards' are [Font Awesome](https://fontawesome.com/icons?from=io) icons with unique class names "fa fa-****" for each pair, located as unorder list items with a common class name 'card'.
 
 So developing strategy was as follow:
 
