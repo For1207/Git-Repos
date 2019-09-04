@@ -54,7 +54,7 @@ Because every pair has a unique class name we can use it as a condition to compa
 
 When we match a pair of cards, we add them to `cardsMatched`, so when all 8 pairs are matched, the length of this array is equal 16. And this is a winning condition: `cardsMatched.length === 16`. After that the game stops, all counter stop and a modal window appears.
 
-### Provide statistics
+### Provide Statistics
 
 #### Time
 Timer starts when the first card was clicked and stop when all cards are matched.
@@ -71,7 +71,7 @@ There are three main points here. According project specification:
 Because I want more functional here, I choose move# 2 when the score falls to 2 stars, and move# 4 when it falls to 1. After that, with `movesToMatchedRatio` it evaluates ratio of matched cards and moves (`movesCounter`). Then it compare this ratio coefficients and assign 1, 2 of 3 stars and display them.
 This functional is in lines 119 - 169. Functions `starScore()`, `display(OneOrTwoOrThree)Star()` do that.
 
-#### Moves counter
+#### Moves Counter
 
 In the logic of this game one move - when two cards are compared, not just clicked. So when function `clearCardsOpened()`, in lines 54 - 61, clears the array in invokes `moves()`, wich in its turn increases `movesCounter` by 1 and display in on the page.
 
@@ -80,7 +80,7 @@ In the logic of this game one move - when two cards are compared, not just click
 Lines 171 - 233.
 A click event listener added in line 222 assigned to the `<div class="restart">`. When it is clicked it invokes function `resetGame()` which triggers other functions: `stopClock()`, `resetClock()`, `resetScore()`, `starScore()`, `movesReset ()`, `resetDeck ()`
 
-### Develop a modal
+### Develop a Modal
 
 In `index.html`  was added `<div class = "modal">`  with classes `modal`, `checkmark`, `modal-header`, `modal-stats`, `modal-exclamation`, `modal-play-again` and a content for the modal. Then, in app.css I added rules for that classes. A click even listener in line 244 app.js listens for a condition when after that click `cardsMatched.length === 16` and the modal window pops up. Then in display game's congratulation message, moves, score, time and offers to play again.
 
