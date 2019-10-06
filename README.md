@@ -8,7 +8,7 @@ This project is an electronic version of a well-known card game "Concentration"
 
 The rules are straightforward enough and do not require further explanation.
 
-The main idea was to emulate the logic of this game using instruments of HTML, CSS and JavaScript and meet all criteria described in Udacity's:
+The main idea was to emulate the logic of this game using instruments of HTML, CSS, and JavaScript and meet all criteria described in Udacity's:
   - [Memory Game Project Specification](https://review.udacity.com/#!/rubrics/591/view);
   - Style Guides ([HTML](http://udacity.github.io/frontend-nanodegree-styleguide/index.html), [CSS](http://udacity.github.io/frontend-nanodegree-styleguide/css.html), [JavaScript](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html), [Git Commit Message](https://udacity.github.io/git-styleguide/))
 
