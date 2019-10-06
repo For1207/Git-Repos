@@ -1,6 +1,6 @@
 # Memory Game
 
-This project is an electronic version of well known card game "Concentration"
+This project is an electronic version of a well-known card game "Concentration"
 
 [Wikipedia](https://en.wikipedia.org/wiki/Concentration_(card_game)) gives the following definition:
 
